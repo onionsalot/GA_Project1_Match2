@@ -33,6 +33,7 @@ const cardList = [
     { 'name': 'Australian Shepherd', 'img': '<img class="front" src="cards/dogs/australianshepherd.png">'},
     { 'name': 'German Shepherd', 'img': '<img class="front" src="cards/dogs/germanshepherd.png">'}
 ];
+
 const stageToCells = {
     // STAGE: [CELLS, MATCHES]
     1: [8, 4],
@@ -43,10 +44,11 @@ const stageToCells = {
     6: [18, 9],
     7: [20, 10]
 }
+
 let displayedCardList =[];
 const imgLinks =[];
 /*----- app's state (variables) -----*/
-let stage, score, lives, mode, theme, matchedCount;
+let stage, score, lives, mode, theme, matchedCount, currentRowPlacement;
 let choice1, choice2;
 /*----- cached element references -----*/
 const timerEl = document.querySelector('.timer');
@@ -58,7 +60,7 @@ const themeEl = document.querySelector('.theme');
 const table = document.getElementsByClassName('table');
 const startButton = document.querySelector('.startB');
 const nextButton = document.querySelector('.next_button')
-let tableCells;
+let tableCells; // Initialized, but not rendered
 const tableRows = document.querySelectorAll('.row');
 /*----- event listeners -----*/
 document.querySelector('.table').addEventListener('click', clickCard);
@@ -71,6 +73,7 @@ function initiateGame() {
         score = 0;
         lives = 10;
         matchedCount = 0;
+        currentRowPlacement = 0;
     } else {
         stage++;
         matchedCount = 0;
@@ -149,13 +152,10 @@ function renderBoard() {
         const createDiv = document.createElement('div');
         createDiv.setAttribute('class', 'table_cell');
         createDiv.setAttribute('id',i)
-        if (tableRows[0].childElementCount < 5) {
-            tableRows[0].appendChild(createDiv);
-        } else if (tableRows[0].childElementCount === 5 && tableRows[1].childElementCount < 5){
-            tableRows[1].appendChild(createDiv);
-        } else if (tableRows[1].childElementCount === 5){
-            tableRows[2].appendChild(createDiv);
-        };
+        tableRows[currentRowPlacement].appendChild(createDiv);
+        if (tableRows[currentRowPlacement].childElementCount === 5) {
+            currentRowPlacement++;
+        }
     };
 
     tableCells = document.querySelectorAll('.table_cell');
