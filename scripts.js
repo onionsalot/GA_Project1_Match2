@@ -42,7 +42,10 @@ const stageToCells = {
     4: [14, 7],
     5: [16, 8],
     6: [18, 9],
-    7: [20, 10]
+    7: [20, 10],
+    8: [22, 11],
+    9: [24, 12],
+    10: [26, 13]
 }
 
 let displayedCardList =[];
@@ -71,12 +74,13 @@ function initiateGame() {
     if (stage === undefined) {
         stage = 1;
         score = 0;
-        lives = 10;
+        lives = 20;
         matchedCount = 0;
         currentRowPlacement = 0;
     } else {
         stage++;
         matchedCount = 0;
+        currentRowPlacement = 0;
         removeBoard();
         document.querySelector('.table').addEventListener('click', clickCard);
     }
@@ -128,7 +132,12 @@ function checkMatch() {
             choice2 = undefined;
             lives --;
             renderElements();
-            document.querySelector('.table').addEventListener('click', clickCard);
+            if (lives === 0) {
+                gameOver();
+            } else {
+                document.querySelector('.table').addEventListener('click', clickCard);
+            }
+            
         }, 1000);
     }
 }
@@ -196,5 +205,9 @@ function timers() {
             cell.style.transform = 'rotateY(180deg)'
         })
     }, 5000);
+    
+}
+
+function gameOver() {
     
 }
