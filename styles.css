@@ -32,6 +32,6 @@ img {
     transform: rotateY(180deg);
 }
 
-/* .table_cell:hover {
-    transform: rotateY(180deg);
-} */
+.next_button {
+    opacity: 0;
+}

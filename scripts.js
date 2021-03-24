@@ -21,25 +21,32 @@
 
 /*----- constants -----*/
 const cardList = [
-    { 'name': 'Pomeranian', 'img': '<img class="front" src="https://www.thesprucepets.com/thmb/wpN_ZunUaRQAc_WRdAQRxeTbyoc=/4231x2820/filters:fill(auto,1)/adorable-white-pomeranian-puppy-spitz-921029690-5c8be25d46e0fb000172effe.jpg">'},
-    { 'name': 'Pomsky', 'img': '<img class="front" src="https://i.pinimg.com/originals/b5/f7/86/b5f786c94dc2eea43ea9e3f9b5224cd5.jpg">'},
-    { 'name': 'Golden Retriever', 'img': '<img class="front" src="https://s01.sgp1.cdn.digitaloceanspaces.com/article/131928-mxiccwtarv-1575034997.jpg">'},
-    { 'name': 'Corgi', 'img': '<img class="front" src="https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2017/11/14112506/Pembroke-Welsh-Corgi-standing-outdoors-in-the-fall.jpg">'},
-    { 'name': 'Dachshund', 'img': '<img class="front" src="https://www.dogtime.com/assets/uploads/2011/01/file_23020_dachshund-dog-breed.jpg">'}
+    { 'name': 'Pomeranian', 'img': '<img class="front" src="cards/dogs/pomeranian.png">'},
+    { 'name': 'Pomsky', 'img': '<img class="front" src="cards/dogs/pomsky.png">'},
+    { 'name': 'Golden Retriever', 'img': '<img class="front" src="cards/dogs/goldenretriever.png">'},
+    { 'name': 'Corgi', 'img': '<img class="front" src="cards/dogs/corgi.png">'},
+    { 'name': 'Dachshund', 'img': '<img class="front" src="cards/dogs/dachshund.png">'},
+    { 'name': 'Beagle', 'img': '<img class="front" src="cards/dogs/beagle.png">'},
+    { 'name': 'Siberian Husky', 'img': '<img class="front" src="cards/dogs/husky.png">'},
+    { 'name': 'Shiba Inu', 'img': '<img class="front" src="cards/dogs/shiba.png">'},
+    { 'name': 'Pitbull', 'img': '<img class="front" src="cards/dogs/pitbull.png">'},
+    { 'name': 'Australian Shepherd', 'img': '<img class="front" src="cards/dogs/australianshepherd.png">'},
+    { 'name': 'German Shepherd', 'img': '<img class="front" src="cards/dogs/germanshepherd.png">'}
 ];
 const stageToCells = {
-    1: 8,
-    2: 10,
-    3: 12,
-    4: 14,
-    5: 20,
-    6: 22,
-    7: 24
+    // STAGE: [CELLS, MATCHES]
+    1: [8, 4],
+    2: [10, 5],
+    3: [12, 6],
+    4: [14, 7],
+    5: [16, 8],
+    6: [18, 9],
+    7: [20, 10]
 }
 let displayedCardList =[];
 const imgLinks =[];
 /*----- app's state (variables) -----*/
-let stage, score, lives, mode, theme;
+let stage, score, lives, mode, theme, matchedCount;
 let choice1, choice2;
 /*----- cached element references -----*/
 const timerEl = document.querySelector('.timer');
@@ -50,17 +57,25 @@ const modeEl = document.querySelector('.mode');
 const themeEl = document.querySelector('.theme');
 const table = document.getElementsByClassName('table');
 const startButton = document.querySelector('.startB');
+const nextButton = document.querySelector('.next_button')
 let tableCells;
 const tableRows = document.querySelectorAll('.row');
 /*----- event listeners -----*/
 document.querySelector('.table').addEventListener('click', clickCard);
 startButton.addEventListener('click', initiateGame);
+nextButton.addEventListener('click', initiateGame);
 /*----- functions -----*/
 function initiateGame() {
     if (stage === undefined) {
         stage = 1;
         score = 0;
         lives = 10;
+        matchedCount = 0;
+    } else {
+        stage++;
+        matchedCount = 0;
+        removeBoard();
+        document.querySelector('.table').addEventListener('click', clickCard);
     }
     renderElements();
     timers();
@@ -95,7 +110,12 @@ function checkMatch() {
         choice2 = undefined;
         score += 1000;
         renderElements();
-        document.querySelector('.table').addEventListener('click', clickCard);
+        matchedCount++;
+        if (stageToCells[stage][1] === matchedCount) {
+            nextButton.style.opacity = '1';
+        } else {
+            document.querySelector('.table').addEventListener('click', clickCard);
+        }
     } else {
         setTimeout(function(){ 
             console.log(`no match in ${displayedCardList[choice1]} and ${displayedCardList[choice2]}`)
@@ -109,8 +129,9 @@ function checkMatch() {
         }, 1000);
     }
 }
+
 function renderElements() {
-    console.log(`current score is ${score}`)
+    // Used to update the UI elements related to the numbers
     stageEl.textContent= stage;
     scoreEl.textContent= score;
     livesEl.textContent= lives;
@@ -120,28 +141,26 @@ function renderElements() {
 function renderBoard() {
     // create a new array which will be rendered onto the field
     // loop through cardlist and take first 4, and add els to new array x2
-    // cardList.forEach((ele) => {
-    //     displayedCardList.push(ele);
-    //     displayedCardList.push(ele);
-    // })
     
     // Stage1=8 Stage2=10 Stage3=12 Stage4=14 Stage5=16 Stage6=18 ...
     
-    for (let i=0; i < stageToCells[stage]; i++){
+    // Used to draw the board and attach the cards to the board after randomizing
+    for (let i=0; i < stageToCells[stage][0]; i++){
         const createDiv = document.createElement('div');
         createDiv.setAttribute('class', 'table_cell');
         createDiv.setAttribute('id',i)
         if (tableRows[0].childElementCount < 5) {
             tableRows[0].appendChild(createDiv);
-        } else {
+        } else if (tableRows[0].childElementCount === 5 && tableRows[1].childElementCount < 5){
             tableRows[1].appendChild(createDiv);
-        }
-        
-
+        } else if (tableRows[1].childElementCount === 5){
+            tableRows[2].appendChild(createDiv);
+        };
     };
+
     tableCells = document.querySelectorAll('.table_cell');
     displayedCardList = [];
-    for (let i=0; i<stageToCells[stage]/2; i++) {
+    for (let i=0; i<stageToCells[stage][0]/2; i++) {
         displayedCardList.push(cardList[i]);
         displayedCardList.push(cardList[i]);
     }
@@ -149,14 +168,24 @@ function renderBoard() {
     displayedCardList = displayedCardList.sort(() => Math.random() - 0.5)
     for (let i=0; i<tableCells.length; i++) {
         tableCells[i].innerHTML = `${displayedCardList[i].img}
-        <img class="back" src="https://static.wikia.nocookie.net/megamitensei/images/4/45/Tarot.png/revision/latest/scale-to-width-down/340?cb=20160405134836">`;
+        <img class="back" src="cards/dogs/back.png">`;
         console.log(`ran ${i} times`)
     }
 
-    // })
+}
+
+function removeBoard() {
+    // Used to remove the board after user clicks NEXT STAGE
+    tableRows.forEach((row) => {
+        while(row.firstChild) {
+            row.removeChild(row.firstChild);
+        }
+    })
 }
 
 function timers() {
+    // All timer functions will be located here. Called when stage starts to flip cards.
+    // Also called to start stage timer so users have only 60 seconds to complete a stage.
     setTimeout(function(){ renderBoard();}, 1000);
     setTimeout(function(){ startButton.innerHTML='3'}, 2000);
     setTimeout(function(){ startButton.innerHTML='2'}, 3000);
