@@ -1,28 +1,29 @@
 .gameover {
-    z-index: -2;
+    z-index: -1;
     text-align: center;
     margin: 0 auto;
     width: 100%;
     justify-content: center;
     align-items: center;
     background-color: hotpink;
-    border: 5px solid blue;
+    border: 1px solid black;
 }
 
 .opening {
-    position:absolute;
-    z-index: -1;
+    z-index: 1;
     text-align: center;
-    margin: auto;
-    padding: 0 0 0 150px;
+    margin: 0 auto;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    background-color: hotpink;
+    border: 1px solid black;
 }
 
 .table {
-    z-index: -1;
     border-collapse: separate;
     border-spacing: 5px;
 }
-
 
 .opening h2 {
     font-size: 80px;
@@ -145,4 +146,24 @@ main {
 
 .lives {
     display: inline-block;
+}
+
+button {
+    background-color: white;
+    border: 2px solid #555555;
+    color: black;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.picked {
+    background-color: rgb(106, 190, 106);
+    color: black;
+    border: 2px solid #555555;
 }

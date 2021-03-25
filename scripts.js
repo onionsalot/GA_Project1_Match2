@@ -67,10 +67,16 @@ const nextButton = document.querySelector('.next_button');
 let tableCells; // Initialized, but not rendered
 const tableRows = document.querySelectorAll('.row');
 const countdown = document.querySelector('#countdown');
+const openingScreen = document.querySelector('.opening');
+const gameoverScreen = document.querySelector('.gameover');
+const pick2 = document.querySelector('.pick2');
+const pick3 = document.querySelector('.pick3');
 /*----- event listeners -----*/
 document.querySelector('.table').addEventListener('click', clickCard);
 startButton.addEventListener('click', initiateGame);
 nextButton.addEventListener('click', initiateGame);
+pick2.addEventListener('click', pickMode);
+pick3.addEventListener('click', pickMode);
 /*----- functions -----*/
 function initiateGame() {
     if (stage === undefined) {
@@ -148,6 +154,16 @@ function checkMatch() {
     }
 }
 
+function pickMode(choice) { 
+    if (choice.target.classList.contains('pick2')) {
+        pick3.classList.remove('picked')
+        pick2.classList.add('picked')
+    } else {
+        pick2.classList.remove('picked')
+        pick3.classList.add('picked')
+    }
+}
+
 function renderElements() {
     // Used to update the UI elements related to the numbers
     
@@ -170,9 +186,9 @@ function renderBoard() {
     // Stage1=8 Stage2=10 Stage3=12 Stage4=14 Stage5=16 Stage6=18 ...
     
     // Used to draw the board and attach the cards to the board after randomizing
-    document.querySelector('.opening').style.setProperty('z-index', '-1');
-    document.querySelector('.table').style.setProperty('z-index', '1');
-    
+    openingScreen.style.setProperty('z-index', '-1');
+    gameoverScreen.style.setProperty('z-index', '-1');
+
     for (let i=0; i < stageToCells[stage][0]; i++){
         const createDiv = document.createElement('div');
         createDiv.setAttribute('class', 'table_cell');
@@ -238,8 +254,7 @@ function gameOver() {
     removeBoard();
     clearInterval(timeOut);
     stage = undefined;
-    document.querySelector('.gameover').style.setProperty('z-index', '1');
-    document.querySelector('.table').style.setProperty('z-index', '-1');
+    gameoverScreen.style.setProperty('z-index', '1');
 }
 
 
