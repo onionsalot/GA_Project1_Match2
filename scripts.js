@@ -31,30 +31,32 @@ const cardList = [
     { 'name': 'Shiba Inu', 'img': '<img class="front" src="cards/dogs/shiba.png">'},
     { 'name': 'Pitbull', 'img': '<img class="front" src="cards/dogs/pitbull.png">'},
     { 'name': 'Australian Shepherd', 'img': '<img class="front" src="cards/dogs/australianshepherd.png">'},
-    { 'name': 'German Shepherd', 'img': '<img class="front" src="cards/dogs/germanshepherd.png">'}
+    { 'name': 'German Shepherd', 'img': '<img class="front" src="cards/dogs/germanshepherd.png">'},
+    { 'name': 'Poodle', 'img': '<img class="front" src="https://i.ytimg.com/vi/muCshzf8k2Q/maxresdefault.jpg">'},
+    { 'name': 'Pug', 'img': '<img class="front" src="https://www.cdc.gov/healthypets/images/pets/cute-dog-headshot.jpg">'}
 ];
 
 const stageToCells = {
-    // STAGE: [CELLS, MATCHES, P3CELLS, P3 Matches]
-    1: [8, 4, 6, 2],
-    2: [10, 5, 9, 4],
-    3: [12, 6, 12, 5],
-    4: [14, 7, 15, 6],
-    5: [16, 8, 18, 7],
-    6: [18, 9, 21, 8],
-    7: [20, 10, 24, 9],
-    8: [22, 11, 27, 10],
-    9: [24, 12, 30, 11],
-    10: [26, 13, 33, 12]
+    // STAGE: [p2CELLS, p3CELLS, p2MATCHES, p3MATCHES]
+    1: [8, 6, 4, 2],
+    2: [10, 9, 5, 3],
+    3: [12, 12, 6, 4],
+    4: [14, 15, 7, 5],
+    5: [16, 18, 8, 6],
+    6: [18, 21, 9, 7],
+    7: [20, 24, 10, 8],
+    8: [22, 27, 11, 9],
+    9: [24, 30, 12, 10],
+    10: [26, 33, 13, 11]
 }
 
 let displayedCardList =[];
 const imgLinks =[];
 /*----- app's state (variables) -----*/
 let stage, score, lives, matchedCount, currentRowPlacement;
-let mode = 2;
+let mode = 0;
 let theme = 'dogs';
-let choice1, choice2;
+let choice1, choice2, choice3;
 let timeOut, currentTime;
 /*----- cached element references -----*/
 const timerEl = document.querySelector('.timer');
@@ -93,7 +95,11 @@ function initiateGame() {
         matchedCount = 0;
         currentRowPlacement = 0;
         removeBoard();
-        document.querySelector('.table').addEventListener('click', clickCard);
+        if (stage > 10) {
+            gameOver();
+        } else {
+            document.querySelector('.table').addEventListener('click', clickCard);
+        }
     }
     currentTime = 60;
     renderElements();
@@ -110,49 +116,97 @@ function clickCard(clicked) {
         console.log(clicked);
         console.log(idClicked);
         clicked.target.parentNode.style.removeProperty('transform');
-        if (choice1 === undefined) {
-            choice1 = idClicked;
+        if (mode === 0 ) {
+            if (choice1 === undefined) {
+                choice1 = idClicked;
+            } else {
+                clicked.target.parentNode.style.removeProperty('transform');
+                choice2 = idClicked;
+                checkMatch()
+            }
         } else {
-            clicked.target.parentNode.style.removeProperty('transform');
-            choice2 = idClicked;
-            checkMatch()
+            if (choice1 === undefined) {
+                choice1 = idClicked;
+            } else if (choice2 === undefined) {
+                choice2 = idClicked;
+            } else {
+                clicked.target.parentNode.style.removeProperty('transform');
+                choice3 = idClicked;
+                checkMatch()
+            }
         }
-        
     }
 }
 
 function checkMatch() {
     document.querySelector('.table').removeEventListener('click', clickCard);
-    if (displayedCardList[choice1] === displayedCardList[choice2]) {
-        console.log(`MATCH`)
-        choice1 = undefined;
-        choice2 = undefined;
-        score += 1000;
-        renderElements();
-        matchedCount++;
-        if (stageToCells[stage][1] === matchedCount) {
-            nextButton.style.opacity = '1';
-            clearInterval(timeOut);
-        } else {
-            document.querySelector('.table').addEventListener('click', clickCard);
-        }
-    } else {
-        setTimeout(function(){ 
-            console.log(`no match in ${displayedCardList[choice1]} and ${displayedCardList[choice2]}`)
-            tableCells[choice1].style.transform = 'rotateY(180deg)';
+    if (mode === 0) {
+        if (displayedCardList[choice1] === displayedCardList[choice2]) {
+            console.log(`MATCH`)
             choice1 = undefined;
-            tableCells[choice2].style.transform = 'rotateY(180deg)';
             choice2 = undefined;
-            score -= 300;
-            lives --;
+            score += 1000;
             renderElements();
-            if (lives === 0) {
-                gameOver();
+            matchedCount++;
+            if (stageToCells[stage][2] === matchedCount) {
+                nextButton.style.opacity = '1';
+                clearInterval(timeOut);
             } else {
                 document.querySelector('.table').addEventListener('click', clickCard);
             }
-            
-        }, 1000);
+        } else {
+            setTimeout(function(){ 
+                console.log(`no match in ${displayedCardList[choice1]} and ${displayedCardList[choice2]}`)
+                tableCells[choice1].style.transform = 'rotateY(180deg)';
+                choice1 = undefined;
+                tableCells[choice2].style.transform = 'rotateY(180deg)';
+                choice2 = undefined;
+                score -= 300;
+                lives --;
+                renderElements();
+                if (lives === 0) {
+                    gameOver();
+                } else {
+                    document.querySelector('.table').addEventListener('click', clickCard);
+                }
+                
+            }, 1000);
+        }
+    } else {
+        if (displayedCardList[choice1] === displayedCardList[choice2] && displayedCardList[choice1] === displayedCardList[choice3]) {
+            console.log(`MATCH`)
+            choice1 = undefined;
+            choice2 = undefined;
+            choice3 = undefined;
+            score += 2000;
+            renderElements();
+            matchedCount++;
+            if (stageToCells[stage][3] === matchedCount) {
+                nextButton.style.opacity = '1';
+                clearInterval(timeOut);
+            } else {
+                document.querySelector('.table').addEventListener('click', clickCard);
+            }
+        } else {
+            setTimeout(function(){ 
+                console.log(`no match in ${displayedCardList[choice1]} and ${displayedCardList[choice2]}`)
+                tableCells[choice1].style.transform = 'rotateY(180deg)';
+                choice1 = undefined;
+                tableCells[choice2].style.transform = 'rotateY(180deg)';
+                choice2 = undefined;
+                tableCells[choice3].style.transform = 'rotateY(180deg)';
+                choice3 = undefined;
+                score -= 300;
+                lives --;
+                renderElements();
+                if (lives === 0) {
+                    gameOver();
+                } else {
+                    document.querySelector('.table').addEventListener('click', clickCard);
+                }
+                
+            }, 1000);
+        }
     }
 }
 
@@ -160,11 +214,11 @@ function pickMode(choice) {
     if (choice.target.classList.contains('pick2')) {
         pick3.classList.remove('picked')
         pick2.classList.add('picked')
-        mode = 2;
+        mode = 0;
     } else {
         pick2.classList.remove('picked')
         pick3.classList.add('picked')
-        mode = 3;
+        mode = 1;
     }
     renderElements();
 }
@@ -181,7 +235,7 @@ function renderElements() {
     stageEl.textContent= stage;
     scoreEl.textContent= score;
     livesEl.textContent= lives;
-    modeEl.textContent= mode;
+    modeEl.textContent= mode +2;
     themeEl.textContent= theme;
 }
 
@@ -194,22 +248,36 @@ function renderBoard() {
     // Used to draw the board and attach the cards to the board after randomizing
     openingScreen.style.setProperty('z-index', '-1');
     gameoverScreen.style.setProperty('z-index', '-1');
-    for (let i=0; i < stageToCells[stage][0]; i++){
+
+    // Renders the board based on mode.
+    // creates divs 
+    for (let i=0; i < stageToCells[stage][mode]; i++){
         const createDiv = document.createElement('div');
         createDiv.setAttribute('class', 'table_cell');
         createDiv.setAttribute('id',i)
         tableRows[currentRowPlacement].appendChild(createDiv);
-        if (tableRows[currentRowPlacement].childElementCount === 6) {
+        if (tableRows[currentRowPlacement].childElementCount === (mode+6)) {
             currentRowPlacement++;
         }
     };
 
+    // initiates and assigns vars then pushes cards into the cells 
     tableCells = document.querySelectorAll('.table_cell');
     displayedCardList = [];
-    for (let i=0; i<stageToCells[stage][0]/2; i++) {
+    if (mode === 0) {
+        for (let i=0; i<stageToCells[stage][mode]/2; i++) {
         displayedCardList.push(cardList[i]);
         displayedCardList.push(cardList[i]);
+        }
+    } else {
+        for (let i=0; i<stageToCells[stage][mode]/3; i++) {
+        displayedCardList.push(cardList[i]);
+        displayedCardList.push(cardList[i]);
+        displayedCardList.push(cardList[i]);
+        }
     }
+    
+
     // RANDOMIZE FUNCTION V
     displayedCardList = displayedCardList.sort(() => Math.random() - 0.5)
     for (let i=0; i<tableCells.length; i++) {
