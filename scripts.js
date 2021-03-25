@@ -35,23 +35,25 @@ const cardList = [
 ];
 
 const stageToCells = {
-    // STAGE: [CELLS, MATCHES]
-    1: [8, 4],
-    2: [10, 5],
-    3: [12, 6],
-    4: [14, 7],
-    5: [16, 8],
-    6: [18, 9],
-    7: [20, 10],
-    8: [22, 11],
-    9: [24, 12],
-    10: [26, 13]
+    // STAGE: [CELLS, MATCHES, P3CELLS, P3 Matches]
+    1: [8, 4, 6, 2],
+    2: [10, 5, 9, 4],
+    3: [12, 6, 12, 5],
+    4: [14, 7, 15, 6],
+    5: [16, 8, 18, 7],
+    6: [18, 9, 21, 8],
+    7: [20, 10, 24, 9],
+    8: [22, 11, 27, 10],
+    9: [24, 12, 30, 11],
+    10: [26, 13, 33, 12]
 }
 
 let displayedCardList =[];
 const imgLinks =[];
 /*----- app's state (variables) -----*/
-let stage, score, lives, mode, theme, matchedCount, currentRowPlacement;
+let stage, score, lives, matchedCount, currentRowPlacement;
+let mode = 2;
+let theme = 'dogs';
 let choice1, choice2;
 let timeOut, currentTime;
 /*----- cached element references -----*/
@@ -158,10 +160,13 @@ function pickMode(choice) {
     if (choice.target.classList.contains('pick2')) {
         pick3.classList.remove('picked')
         pick2.classList.add('picked')
+        mode = 2;
     } else {
         pick2.classList.remove('picked')
         pick3.classList.add('picked')
+        mode = 3;
     }
+    renderElements();
 }
 
 function renderElements() {
@@ -176,7 +181,8 @@ function renderElements() {
     stageEl.textContent= stage;
     scoreEl.textContent= score;
     livesEl.textContent= lives;
-
+    modeEl.textContent= mode;
+    themeEl.textContent= theme;
 }
 
 function renderBoard() {
@@ -188,7 +194,6 @@ function renderBoard() {
     // Used to draw the board and attach the cards to the board after randomizing
     openingScreen.style.setProperty('z-index', '-1');
     gameoverScreen.style.setProperty('z-index', '-1');
-
     for (let i=0; i < stageToCells[stage][0]; i++){
         const createDiv = document.createElement('div');
         createDiv.setAttribute('class', 'table_cell');
