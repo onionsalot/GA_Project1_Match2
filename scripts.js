@@ -62,9 +62,10 @@ const modeEl = document.querySelector('.mode');
 const themeEl = document.querySelector('.theme');
 const table = document.getElementsByClassName('table');
 const startButton = document.querySelector('.startB');
-const nextButton = document.querySelector('.next_button')
+const nextButton = document.querySelector('.next_button');
 let tableCells; // Initialized, but not rendered
 const tableRows = document.querySelectorAll('.row');
+const countdown = document.querySelector('.countdown');
 /*----- event listeners -----*/
 document.querySelector('.table').addEventListener('click', clickCard);
 startButton.addEventListener('click', initiateGame);
@@ -157,12 +158,15 @@ function renderBoard() {
     // Stage1=8 Stage2=10 Stage3=12 Stage4=14 Stage5=16 Stage6=18 ...
     
     // Used to draw the board and attach the cards to the board after randomizing
+    document.querySelector('.opening').style.setProperty('z-index', '-1');
+    document.querySelector('.table').style.setProperty('z-index', '1');
+    
     for (let i=0; i < stageToCells[stage][0]; i++){
         const createDiv = document.createElement('div');
         createDiv.setAttribute('class', 'table_cell');
         createDiv.setAttribute('id',i)
         tableRows[currentRowPlacement].appendChild(createDiv);
-        if (tableRows[currentRowPlacement].childElementCount === 5) {
+        if (tableRows[currentRowPlacement].childElementCount === 6) {
             currentRowPlacement++;
         }
     };
@@ -196,10 +200,10 @@ function timers() {
     // All timer functions will be located here. Called when stage starts to flip cards.
     // Also called to start stage timer so users have only 60 seconds to complete a stage.
     setTimeout(function(){ renderBoard();}, 1000);
-    setTimeout(function(){ startButton.innerHTML='3'}, 2000);
-    setTimeout(function(){ startButton.innerHTML='2'}, 3000);
-    setTimeout(function(){ startButton.innerHTML='1'}, 4000);
-    setTimeout(function(){ startButton.innerHTML=''}, 5000);
+    setTimeout(function(){ countdown.innerHTML='3'}, 2000);
+    setTimeout(function(){ countdown.innerHTML='2'}, 3000);
+    setTimeout(function(){ countdown.innerHTML='1'}, 4000);
+    setTimeout(function(){ countdown.innerHTML=''}, 5000);
     setTimeout(function(){ 
         tableCells.forEach((cell) => {
             cell.style.transform = 'rotateY(180deg)'
@@ -209,5 +213,5 @@ function timers() {
 }
 
 function gameOver() {
-    
+    removeBoard();
 }

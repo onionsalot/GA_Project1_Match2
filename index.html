@@ -9,39 +9,59 @@
 </head>
 <body>
     <h1> Match Two</h1>
-    <main>
-        <h2 class='startB'>Start</h2> <BR>
-        <button class='pick2'>Pick 2</button>
-        <button class='pick3'>Pick 3</button>
-        <select>
-            <option value='dogs'>Dogs</option>
-            <option value='anime'>Anime</option>
-            <option value='cars'>Cars</option>
-        </select>
-        <h4>Time: <span class='timer'>0</span></h4>
-        <div class= 'table'>
-            <div class="row">
+    <div class='container'>
+        <main class='left_box'>
+            <!-- <h2 class='startB'>Start</h2> <BR>
+            <button class='pick2'>Pick 2</button>
+            <button class='pick3'>Pick 3</button>
+            <select>
+                <option value='dogs'>Dogs</option>
+                <option value='anime'>Anime</option>
+                <option value='cars'>Cars</option>
+            </select> -->
+            <h4>Time: <span class='timer'>0</span></h4>
+            <div>
+                <div class='opening'> 
+                <h2 class='startB'>Start</h2> <BR>
+                <button class='pick2'>Pick 2</button>
+                <button class='pick3'>Pick 3</button>
+                <select>
+                    <option value='dogs'>Dogs</option>
+                    <option value='anime'>Anime</option>
+                    <option value='cars'>Cars</option>
+                </select>
             </div>
-            <div class="row">
+            <div class= 'table'>
+                <div class="row">
+                </div>
+                <div class="row">
+                </div>
+                <div class="row">
+                </div>
+                <div class="row">
+                </div>
+                <div class="row">
+                </div>
+                <div class="row">
+                </div>
             </div>
-            <div class="row">
             </div>
-            <div class="row">
+            
+            <nav><button class= 'next_button'>Next Stage</button></nav>
+        </main>
+        <div class='right_box'>
+            <div class='display'>
+                <h4>Stage <span class='stage'>0</span></h4>
+                <p>Score: <span class='score'>0</span></p>
+                <p>Lives: <span class='lives'>0</span></p>
+                <p>GameMode: Pick <span class='mode'>0</span></p>
+                <p>Theme: <span class='theme'>0</span></p>
             </div>
-            <div class="row">
-            </div>
-            <div class="row">
+            <div><p class='countdown'></p></div>
+            <div>
+                ddddddddd
             </div>
         </div>
-        <button class= 'next_button'>Next Stage</p>
-        
-    </main>
-    <div class='sideBar'>
-        <h4>Stage <span class='stage'>0</span></h4>
-        <p>Score: <span class='score'>0</span></p>
-        <p>Lives: <span class='lives'>0</span></p>
-        <p>GameMode: Pick <span class='mode'>0</span></p>
-        <p>Theme: <span class='theme'>0</span></p>
     </div>
     <script src='scripts.js'></script>
 </body>
