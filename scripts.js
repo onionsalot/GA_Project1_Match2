@@ -53,6 +53,7 @@ const imgLinks =[];
 /*----- app's state (variables) -----*/
 let stage, score, lives, mode, theme, matchedCount, currentRowPlacement;
 let choice1, choice2;
+let timeOut, currentTime;
 /*----- cached element references -----*/
 const timerEl = document.querySelector('.timer');
 const stageEl = document.querySelector('.stage');
@@ -86,8 +87,9 @@ function initiateGame() {
         removeBoard();
         document.querySelector('.table').addEventListener('click', clickCard);
     }
+    currentTime = 60;
     renderElements();
-    timers();
+    countdownTimer();
     //render();
 }
 
@@ -122,6 +124,7 @@ function checkMatch() {
         matchedCount++;
         if (stageToCells[stage][1] === matchedCount) {
             nextButton.style.opacity = '1';
+            clearInterval(timeOut);
         } else {
             document.querySelector('.table').addEventListener('click', clickCard);
         }
@@ -147,10 +150,13 @@ function checkMatch() {
 
 function renderElements() {
     // Used to update the UI elements related to the numbers
-    livesEl.style.color = 'red';
-    animateCSS('.lives', 'flash').then((message) => {
+    
+    if (livesEl.innerHTML != lives) {
+        livesEl.style.color = 'red';
+        animateCSS('.lives', 'flash').then((message) => {
         livesEl.style.color = 'black';
-    });
+        });
+    }
     stageEl.textContent= stage;
     scoreEl.textContent= score;
     livesEl.textContent= lives;
@@ -188,7 +194,7 @@ function renderBoard() {
     for (let i=0; i<tableCells.length; i++) {
         tableCells[i].innerHTML = `${displayedCardList[i].img}
         <img class="back" src="cards/dogs/back.png">`;
-        console.log(`ran ${i} times`)
+        //console.log(`ran ${i} times`)
     }
 
 }
@@ -200,26 +206,40 @@ function removeBoard() {
             row.removeChild(row.firstChild);
         }
     })
+    countdown.innerHTML= '';
 }
 
-function timers() {
+function countdownTimer() {
     // All timer functions will be located here. Called when stage starts to flip cards.
     // Also called to start stage timer so users have only 60 seconds to complete a stage.
-    setTimeout(function(){ renderBoard();}, 1000);
-    setTimeout(function(){ countdown.innerHTML='3'; animateCSS('#countdown', 'bounceIn');}, 2000);
-    setTimeout(function(){ countdown.innerHTML='2'; animateCSS('#countdown', 'bounceIn');}, 3000);
-    setTimeout(function(){ countdown.innerHTML='1'; animateCSS('#countdown', 'bounceIn');}, 4000);
-    setTimeout(function(){ countdown.innerHTML=''}, 5000);
-    setTimeout(function(){ 
-        tableCells.forEach((cell) => {
-            cell.style.transform = 'rotateY(180deg)'
-        })
-    }, 5000);
-    
+        setTimeout(function(){ renderBoard();}, 1000);
+        setTimeout(function(){ countdown.innerHTML='3'; animateCSS('#countdown', 'bounceIn');}, 2000);
+        setTimeout(function(){ countdown.innerHTML='2'; animateCSS('#countdown', 'bounceIn');}, 3000);
+        setTimeout(function(){ countdown.innerHTML='1'; animateCSS('#countdown', 'bounceIn');}, 4000);
+        setTimeout(function(){ countdown.innerHTML=''}, 5000);
+        setTimeout(function(){ 
+            tableCells.forEach((cell) => {
+                cell.style.transform = 'rotateY(180deg)'
+            })
+            timeOut = setInterval(timeOutTimer, 1000);
+        }, 5000);
+}
+
+function timeOutTimer() {
+    countdown.innerHTML=currentTime;
+    if (currentTime> 0) {
+        currentTime--;
+    } else {
+        gameOver();
+    }
 }
 
 function gameOver() {
     removeBoard();
+    clearInterval(timeOut);
+    stage = undefined;
+    document.querySelector('.gameover').style.setProperty('z-index', '1');
+    document.querySelector('.table').style.setProperty('z-index', '-1');
 }
 
 

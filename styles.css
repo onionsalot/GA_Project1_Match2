@@ -1,16 +1,28 @@
-.table {
-    z-index:-1;
-    border-collapse: separate;
-    border-spacing: 5px;
+.gameover {
+    z-index: -2;
+    text-align: center;
+    margin: 0 auto;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    background-color: hotpink;
+    border: 5px solid blue;
 }
 
 .opening {
     position:absolute;
-    z-index: 1;
+    z-index: -1;
     text-align: center;
     margin: auto;
     padding: 0 0 0 150px;
 }
+
+.table {
+    z-index: -1;
+    border-collapse: separate;
+    border-spacing: 5px;
+}
+
 
 .opening h2 {
     font-size: 80px;
