@@ -22,6 +22,10 @@
     margin: 10px;
 }
 
+.table {
+    background-color: red;
+}
+
 .table_cell{
     display:table-cell;
     width: 76px;
@@ -94,6 +98,12 @@ main {
     width: 500px;
 }
 
+.display h4 {
+    border: 7px double #A40000;
+    border-radius: 7px;   
+    text-align: center;
+}
+
 .display2 {
     display: grid;
     border: 1px solid black;
@@ -119,4 +129,8 @@ main {
 #countdown {
     font-size: 40px;
     margin: auto;
+}
+
+.lives {
+    display: inline-block;
 }

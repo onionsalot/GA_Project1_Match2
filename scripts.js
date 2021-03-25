@@ -147,6 +147,10 @@ function checkMatch() {
 
 function renderElements() {
     // Used to update the UI elements related to the numbers
+    livesEl.style.color = 'red';
+    animateCSS('.lives', 'flash').then((message) => {
+        livesEl.style.color = 'black';
+    });
     stageEl.textContent= stage;
     scoreEl.textContent= score;
     livesEl.textContent= lives;
