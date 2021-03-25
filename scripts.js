@@ -65,7 +65,7 @@ const startButton = document.querySelector('.startB');
 const nextButton = document.querySelector('.next_button');
 let tableCells; // Initialized, but not rendered
 const tableRows = document.querySelectorAll('.row');
-const countdown = document.querySelector('.countdown');
+const countdown = document.querySelector('#countdown');
 /*----- event listeners -----*/
 document.querySelector('.table').addEventListener('click', clickCard);
 startButton.addEventListener('click', initiateGame);
@@ -73,6 +73,7 @@ nextButton.addEventListener('click', initiateGame);
 /*----- functions -----*/
 function initiateGame() {
     if (stage === undefined) {
+        animateCSS('.startB', 'bounceOut')
         stage = 1;
         score = 0;
         lives = 20;
@@ -131,6 +132,7 @@ function checkMatch() {
             choice1 = undefined;
             tableCells[choice2].style.transform = 'rotateY(180deg)';
             choice2 = undefined;
+            score -= 300;
             lives --;
             renderElements();
             if (lives === 0) {
@@ -200,9 +202,9 @@ function timers() {
     // All timer functions will be located here. Called when stage starts to flip cards.
     // Also called to start stage timer so users have only 60 seconds to complete a stage.
     setTimeout(function(){ renderBoard();}, 1000);
-    setTimeout(function(){ countdown.innerHTML='3'}, 2000);
-    setTimeout(function(){ countdown.innerHTML='2'}, 3000);
-    setTimeout(function(){ countdown.innerHTML='1'}, 4000);
+    setTimeout(function(){ countdown.innerHTML='3'; animateCSS('#countdown', 'bounceIn');}, 2000);
+    setTimeout(function(){ countdown.innerHTML='2'; animateCSS('#countdown', 'bounceIn');}, 3000);
+    setTimeout(function(){ countdown.innerHTML='1'; animateCSS('#countdown', 'bounceIn');}, 4000);
     setTimeout(function(){ countdown.innerHTML=''}, 5000);
     setTimeout(function(){ 
         tableCells.forEach((cell) => {
@@ -215,3 +217,22 @@ function timers() {
 function gameOver() {
     removeBoard();
 }
+
+
+const animateCSS = (element, animation, prefix = 'animate__') =>
+  // We create a Promise and return it
+  new Promise((resolve, reject) => {
+    const animationName = `${prefix}${animation}`;
+    const node = document.querySelector(element);
+
+    node.classList.add(`${prefix}animated`, animationName);
+
+    // When the animation ends, we clean the classes and resolve the Promise
+    function handleAnimationEnd(event) {
+      event.stopPropagation();
+      node.classList.remove(`${prefix}animated`, animationName);
+      resolve('Animation ended');
+    }
+
+    node.addEventListener('animationend', handleAnimationEnd, {once: true});
+  });
