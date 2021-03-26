@@ -398,5 +398,8 @@ function endGame() {
   openingScreen.style.setProperty("z-index", "1");
   clearInterval(timeOut);
   stage = undefined;
+  choice1 = undefined;
+  choice2 = undefined;
+  choice2 = undefined;
   removeBoard();
 }
