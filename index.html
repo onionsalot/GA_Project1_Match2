@@ -1,73 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
     <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
     />
-    <title>Document</title>
-</head>
-<body>
-    <h1> Match Two</h1>
-    <div class='container'>
-        <div class='opening left_box'> 
-            <h2 class='startB'>Start</h2> <BR>
-            <button class='pick2 picked'>Pick 2</button>
-            <button class='pick3'>Pick 3</button>
-            <select>
-                <option value='dogs'>Dogs</option>
-                <option value='anime'>Anime</option>
-                <option value='cars'>Cars</option>
-            </select>
+    <title>Match Two Game</title>
+  </head>
+  <body>
+    <h1>Match Two</h1>
+    <div class="container">
+      <div class="opening left_box">
+        <h2 class="startB">Start</h2>
+        <br />
+        <button class="pick2 picked">Pick 2</button>
+        <button class="pick3">Pick 3</button>
+        <select id="theme_selection">
+          <option value="0" selected="selected">Dogs</option>
+          <option value="1">Anime</option>
+          <option value="2">Cars</option>
+        </select>
+      </div>
+      <div class="gameover left_box">
+        <h2>GAME OVER</h2>
+        <article>
+          Final Statistics:<br /><br />
+          Stage Reached: <span>0</span><br />
+          Final Score: <span>0</span><br />
+          Lives Remaining:<span>0</span><br />
+        </article>
+      </div>
+      <main class="left_box">
+        <h4>Time: <span class="timer">0</span></h4>
+        <div>
+          <div class="table">
+            <div class="row"></div>
+            <div class="row"></div>
+            <div class="row"></div>
+            <div class="row"></div>
+            <div class="row"></div>
+            <div class="row"></div>
+          </div>
         </div>
-        <div class='gameover left_box'>
-            <h2>GAME OVER</h2>
-            <article>Final Statistics:<br><br>
-                Stage Reached: <span>0</span><br>
-                Final Score: <span>0</span><br>
-                Lives Remaining:<span>0</span><br>
-            </article>
+
+        <nav>
+          <p
+            class="next_button animate__animated animate__headShake animate__infinite"
+          >
+            Next Stage >>
+          </p>
+        </nav>
+      </main>
+      <div class="right_box">
+        <div class="display">
+          <h4>Stage <span class="stage"></span></h4>
+          <p>Score: <span class="score"></span></p>
+          <p>Lives: <span class="lives"></span></p>
         </div>
-        <main class='left_box'>
-            <h4>Time: <span class='timer'>0</span></h4>
-            <div>
-                <div class= 'table'>
-                    <div class="row">
-                    </div>
-                    <div class="row">
-                    </div>
-                    <div class="row">
-                    </div>
-                    <div class="row">
-                    </div>
-                    <div class="row">
-                    </div>
-                    <div class="row">
-                    </div>
-                </div>
-            </div>
-            
-            <nav><p class= 'next_button animate__animated animate__headShake animate__infinite'>Next Stage >></p></nav>
-        </main>
-        <div class='right_box'>
-            <div class='display'>
-                <h4>Stage <span class='stage'></span></h4>
-                <p>Score: <span class='score'></span></p>
-                <p>Lives: <span class='lives'></span></p>
-            </div>
-            <div class='display2'>
-                <h3 id='countdown'></h3>
-            </div>
-            <div class ='display3'>
-                <p>GameMode: Pick <span class='mode'>0</span></p>
-                <p>Theme: <span class='theme'>0</span></p>
-            </div>
+        <div class="display2">
+          <h3 id="countdown"></h3>
         </div>
+        <div class="display3">
+          <p>GameMode: Pick <span class="mode">0</span></p>
+          <p>Theme: <span class="theme">0</span></p>
+        </div>
+      </div>
     </div>
-    <script src='scripts.js'></script>
-</body>
+    <script src="scripts.js"></script>
+  </body>
 </html>

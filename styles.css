@@ -1,173 +1,171 @@
 .gameover {
-    z-index: -1;
-    text-align: center;
-    margin: 0 auto;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-    background-color: hotpink;
-    border: 1px solid black;
+  z-index: -1;
+  text-align: center;
+  margin: 0 auto;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  background-color: hotpink;
+  border: 1px solid black;
 }
 
 .opening {
-    z-index: 1;
-    text-align: center;
-    margin: 0 auto;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-    background-color: hotpink;
-    border: 1px solid black;
+  z-index: 1;
+  text-align: center;
+  margin: 0 auto;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  background-color: hotpink;
+  border: 1px solid black;
 }
 
 .table {
-    border-collapse: separate;
-    border-spacing: 5px;
+  border-collapse: separate;
+  border-spacing: 5px;
 }
 
 .opening h2 {
-    font-size: 80px;
+  font-size: 80px;
 }
 
-.row{
-    display:table;
-    table-layout:fixed;
-    margin: 10px;
+.row {
+  display: table;
+  table-layout: fixed;
+  margin: 10px;
 }
 
 .table {
-    background-color: red;
+  background-color: red;
 }
 
-.table_cell{
-    display:table-cell;
-    width: 76px;
-    height: 125px;
-    border:solid black 1px;
-    transform-style: preserve-3d;
-    transition: all 0.5s ease;
+.table_cell {
+  display: table-cell;
+  width: 76px;
+  height: 125px;
+  border: solid black 1px;
+  transform-style: preserve-3d;
+  transition: all 0.5s ease;
 }
 
 .back:hover {
-    opacity: 1;
+  opacity: 1;
 }
 
 .front {
-    position:absolute;
-    width: 100%;
-    height: 100%;
-    backface-visibility: hidden;
-    opacity: 1;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  opacity: 1;
 }
 .back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    backface-visibility: hidden;
-    transform: rotateY(180deg);
-    opacity: .5;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  transform: rotateY(180deg);
+  opacity: 0.5;
 }
 
 nav {
-    display: grid;
-    justify-content: end;
+  display: grid;
+  justify-content: end;
 }
 .next_button {
-    opacity: 1;
-    text-align: right;
-    height: 40px;
-    width: 100px;
+  opacity: 1;
+  text-align: right;
+  height: 40px;
+  width: 100px;
 }
 
 .left_box {
-    grid-area: main;
-    background-color: pink;
+  grid-area: main;
+  background-color: pink;
 }
 
 .right_box {
-    display: grid;
-    grid-area: side;
-    justify-content: center;
-    background-color: gray;
-    padding: 10px;
-    border: 1px solid black;
+  display: grid;
+  grid-area: side;
+  justify-content: center;
+  background-color: gray;
+  padding: 10px;
+  border: 1px solid black;
 }
 
 main {
-    display:grid;
-    justify-content: center;
-    
+  display: grid;
+  justify-content: center;
 }
 
 .container {
-    max-width: 800px;
-    height: 600px;
-    display: grid;
-    grid-template-columns: auto 200px;
-    grid-template-rows: auto;
-    grid-template-areas:
-        "main side";
+  max-width: 800px;
+  height: 600px;
+  display: grid;
+  grid-template-columns: auto 200px;
+  grid-template-rows: auto;
+  grid-template-areas: "main side";
 }
 
 .left_box h4 {
-    background-color: green;
-    text-align: right;
-    width: 500px;
+  background-color: green;
+  text-align: right;
+  width: 500px;
 }
 
 .display h4 {
-    border: 7px double #A40000;
-    border-radius: 7px;   
-    text-align: center;
+  border: 7px double #a40000;
+  border-radius: 7px;
+  text-align: center;
 }
 
 .display2 {
-    display: grid;
-    border: 1px solid black;
-    width: 50px;
-    height: 50px;
-    justify-content:space-around;
-    background-color: yellow;
+  display: grid;
+  border: 1px solid black;
+  width: 50px;
+  height: 50px;
+  justify-content: space-around;
+  background-color: yellow;
 }
 
 .display3 {
-    display: flex;
-    flex-direction: column;
-    flex-basis: 100%;
-    flex: 1;
-    height: 100%;
-    width: 180px;
-    background-color: green;
-    font-size: 10px;
-    justify-content:flex-end;
-    align-items:flex-end;
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  flex: 1;
+  height: 100%;
+  width: 180px;
+  background-color: green;
+  font-size: 10px;
+  justify-content: flex-end;
+  align-items: flex-end;
 }
 
 #countdown {
-    font-size: 40px;
-    margin: auto;
+  font-size: 40px;
+  margin: auto;
 }
 
 .lives {
-    display: inline-block;
+  display: inline-block;
 }
 
 button {
-    background-color: white;
-    border: 2px solid #555555;
-    color: black;
-    padding: 16px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    transition-duration: 0.4s;
-    cursor: pointer;
+  background-color: white;
+  border: 2px solid #555555;
+  color: black;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
 }
 
 .picked {
-    background-color: rgb(106, 190, 106);
-    color: black;
-    border: 2px solid #555555;
+  background-color: rgb(106, 190, 106);
+  color: black;
+  border: 2px solid #555555;
 }
