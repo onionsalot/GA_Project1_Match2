@@ -1,24 +1,3 @@
-/*
-- App should start with user clicking start. Initiates the vars and creates a randomized version of the array of objs passed in.
-- Optional choices will be easy or medium under start (default will be easy)
-- Once start clicked, start will disappear and board will be created in it's place
-- Easy = pick 2 Medium = pick 3
-- Board will have all cards revealed for 5 seconds with a countdown up top
-- Flip cards over to blank side once countdown is done and allow users to flip cards over to check for matches
-- Score by matching 2, win by flipping over EVERY CARD and matching each card.
-    1. There will be an array of objs of possible cards to place. (2 of each)
-    2. The array will use Math.Random to randomize the position of the cards
-    3. Will push randomized cards render imgs to all cells on table
-    4. Once two are clicked, compare the clicked cels. If match, score, if not flip cards around.
-- Lose by failing to match items with scaling difficulty. Hearts for health
-- score will be kept on right of screen
-- difficulty picked along with other vars will be stored on right side of screen.
-        - ICEBOX: Themes for cards
-        - ICEBOX: Assist button that will reveal all remaining 
-        - ICEBOX: Scaling difficulty; Once won, click next to restart board. After 3 successful 4x2, do 8x2, then 10x3
-        - ICEBOX: Infomational box which will not only display name of the item clicked, but some trivia as well.
-*/
-
 /*----- constants -----*/
 const cardList = {
     0: [{ 'name': 'Pomeranian', 'img': '<img class="front" src="cards/dogs/pomeranian.png">'},
@@ -149,6 +128,8 @@ function initiateGame() {
   nextButton.disabled = true;
 }
 
+
+
 function clickCard(clicked) {
   const idClicked = clicked.target.parentNode.id;
   if (
@@ -157,9 +138,6 @@ function clickCard(clicked) {
   ) {
     return;
   } else {
-    console.log(clicked.target);
-    console.log(clicked);
-    console.log(idClicked);
     clicked.target.parentNode.style.removeProperty("transform");
     if (mode === 0) {
       if (choice1 === undefined) {
@@ -183,11 +161,12 @@ function clickCard(clicked) {
   }
 }
 
+
+
 function checkMatch() {
   document.querySelector(".table").removeEventListener("click", clickCard);
   if (mode === 0) {
     if (displayedCardList[choice1] === displayedCardList[choice2]) {
-      console.log(`MATCH`);
       choice1 = undefined;
       choice2 = undefined;
       score += 1000;
@@ -202,9 +181,6 @@ function checkMatch() {
       }
     } else {
       setTimeout(function () {
-        console.log(
-          `no match in ${displayedCardList[choice1]} and ${displayedCardList[choice2]}`
-        );
         tableCells[choice1].style.transform = "rotateY(180deg)";
         choice1 = undefined;
         tableCells[choice2].style.transform = "rotateY(180deg)";
@@ -224,7 +200,6 @@ function checkMatch() {
       displayedCardList[choice1] === displayedCardList[choice2] &&
       displayedCardList[choice1] === displayedCardList[choice3]
     ) {
-      console.log(`MATCH`);
       choice1 = undefined;
       choice2 = undefined;
       choice3 = undefined;
@@ -240,9 +215,6 @@ function checkMatch() {
       }
     } else {
       setTimeout(function () {
-        console.log(
-          `no match in ${displayedCardList[choice1]} and ${displayedCardList[choice2]}`
-        );
         tableCells[choice1].style.transform = "rotateY(180deg)";
         choice1 = undefined;
         tableCells[choice2].style.transform = "rotateY(180deg)";
@@ -262,6 +234,8 @@ function checkMatch() {
   }
 }
 
+
+
 function pickMode(choice) {
   if (choice.target.classList.contains("pick2")) {
     pick3.classList.remove("picked");
@@ -275,9 +249,9 @@ function pickMode(choice) {
   renderElements();
 }
 
-function renderElements() {
-  // Used to update the UI elements related to the numbers
 
+
+function renderElements() {
   if (livesEl.innerHTML != lives) {
     livesEl.style.color = "red";
     animateCSS(".lives", "flash").then((message) => {
@@ -291,18 +265,12 @@ function renderElements() {
   themeEl.textContent = theme;
 }
 
+
+
 function renderBoard() {
-  // create a new array which will be rendered onto the field
-  // loop through cardlist and take first 4, and add els to new array x2
-
-  // Stage1=8 Stage2=10 Stage3=12 Stage4=14 Stage5=16 Stage6=18 ...
-
-  // Used to draw the board and attach the cards to the board after randomizing
   openingScreen.style.setProperty("z-index", "-1");
   gameoverScreen.style.setProperty("z-index", "-1");
 
-  // Renders the board based on mode.
-  // creates divs
   for (let i = 0; i < stageToCells[stage][mode]; i++) {
     const createDiv = document.createElement("div");
     createDiv.setAttribute("class", "table_cell");
@@ -313,7 +281,6 @@ function renderBoard() {
     }
   }
 
-  // initiates and assigns vars then pushes cards into the cells
   tableCells = document.querySelectorAll(".table_cell");
   displayedCardList = [];
   if (mode === 0) {
@@ -329,17 +296,16 @@ function renderBoard() {
     }
   }
 
-  // RANDOMIZE FUNCTION V
   displayedCardList = displayedCardList.sort(() => Math.random() - 0.5);
   for (let i = 0; i < tableCells.length; i++) {
     tableCells[i].innerHTML = `${displayedCardList[i].img}
         <img class="back" src="cards/dogs/back.png">`;
-    //console.log(`ran ${i} times`)
   }
 }
 
+
+
 function removeBoard() {
-  // Used to remove the board after user clicks NEXT STAGE
   tableRows.forEach((row) => {
     while (row.firstChild) {
       row.removeChild(row.firstChild);
@@ -348,9 +314,9 @@ function removeBoard() {
   countdown.innerHTML = "";
 }
 
+
+
 function countdownTimer() {
-  // All timer functions will be located here. Called when stage starts to flip cards.
-  // Also called to start stage timer so users have only 60 seconds to complete a stage.
   restart.removeEventListener("click", endGame);
   setTimeout(function () {
     renderBoard();
@@ -379,6 +345,8 @@ function countdownTimer() {
   }, 5000);
 }
 
+
+
 function timeOutTimer() {
   countdown.innerHTML = currentTime;
   if (currentTime > 0) {
@@ -387,6 +355,8 @@ function timeOutTimer() {
     gameOver();
   }
 }
+
+
 
 function gameOver() {
   removeBoard();
@@ -400,6 +370,8 @@ function gameOver() {
     Lives Remaining: ${lives}`;
   stage = undefined;
 }
+
+
 
 const animateCSS = (element, animation, prefix = "animate__") =>
   // We create a Promise and return it
@@ -418,6 +390,8 @@ const animateCSS = (element, animation, prefix = "animate__") =>
 
     node.addEventListener("animationend", handleAnimationEnd, { once: true });
   });
+
+
 
 function endGame() {
   gameoverScreen.style.setProperty("z-index", "-1");
