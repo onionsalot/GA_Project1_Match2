@@ -48,6 +48,12 @@
     transition: all 0.5s ease;
 }
 
+.back:hover {
+    transform:scale(1.4545,1.34);
+    transform-origin:center;
+    opacity: 1;
+}
+
 .front {
     position:absolute;
     width: 100%;

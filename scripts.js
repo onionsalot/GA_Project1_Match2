@@ -95,16 +95,17 @@ function initiateGame() {
         matchedCount = 0;
         currentRowPlacement = 0;
         removeBoard();
-        if (stage > 10) {
-            gameOver();
-        } else {
-            document.querySelector('.table').addEventListener('click', clickCard);
-        }
+        document.querySelector('.table').addEventListener('click', clickCard);
     }
-    currentTime = 60;
-    renderElements();
-    countdownTimer();
-    //render();
+
+    if (stage > 10) {
+        gameOver();
+        document.querySelector('.table').removeEventListener('click', clickCard);
+    } else {
+        currentTime = 60;
+        renderElements();
+        countdownTimer();
+    }
 }
 
 function clickCard(clicked) {
