@@ -49,8 +49,6 @@
 }
 
 .back:hover {
-    transform:scale(1.4545,1.34);
-    transform-origin:center;
     opacity: 1;
 }
 
