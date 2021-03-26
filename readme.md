@@ -8,6 +8,7 @@
 Match two is a memory game where after briefly being shown a handfull of cards, you're asked to locate the matches once the cards are flipped over. You earn points by getting a match, and lose points by failing to match. The basic premise is very simple!
 
 Alongside of the match two format, there is also a match three which will be significantly harder.
+
 [PLAY THE GAME](https://onionsalot.github.io/GA_Project1_Match2/)
 ---
   
