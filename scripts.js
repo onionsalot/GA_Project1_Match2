@@ -87,7 +87,6 @@ let theme = "dogs";
 let choice1, choice2, choice3;
 let timeOut, currentTime;
 /*----- cached element references -----*/
-const timerEl = document.querySelector(".timer");
 const stageEl = document.querySelector(".stage");
 const scoreEl = document.querySelector(".score");
 const livesEl = document.querySelector(".lives");
@@ -117,6 +116,7 @@ function initiateGame() {
     stage = 1;
     score = 0;
     lives = 20;
+    theme = themeSelection.options[themeSelection.selectedIndex].text;
     matchedCount = 0;
     currentRowPlacement = 0;
   } else {
@@ -135,6 +135,8 @@ function initiateGame() {
     renderElements();
     countdownTimer();
   }
+  nextButton.style.opacity = "0";
+  nextButton.disabled = true;
 }
 
 function clickCard(clicked) {
@@ -183,6 +185,7 @@ function checkMatch() {
       matchedCount++;
       if (stageToCells[stage][2] === matchedCount) {
         nextButton.style.opacity = "1";
+        nextButton.disabled = false;
         clearInterval(timeOut);
       } else {
         document.querySelector(".table").addEventListener("click", clickCard);
@@ -220,6 +223,7 @@ function checkMatch() {
       matchedCount++;
       if (stageToCells[stage][3] === matchedCount) {
         nextButton.style.opacity = "1";
+        nextButton.disabled = false;
         clearInterval(timeOut);
       } else {
         document.querySelector(".table").addEventListener("click", clickCard);
@@ -375,8 +379,14 @@ function timeOutTimer() {
 function gameOver() {
   removeBoard();
   clearInterval(timeOut);
-  stage = undefined;
   gameoverScreen.style.setProperty("z-index", "1");
+  document.querySelector(
+    ".gameover article"
+  ).innerHTML = `Final Statistics:<br><br>
+    Stage Reached: ${stage}<br>
+    Final Score: ${score}<br>
+    Lives Remaining: ${lives}`;
+  stage = undefined;
 }
 
 const animateCSS = (element, animation, prefix = "animate__") =>

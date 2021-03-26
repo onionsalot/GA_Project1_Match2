@@ -5,7 +5,6 @@
   width: 100%;
   justify-content: center;
   align-items: center;
-  background-color: hotpink;
   border: 1px solid black;
 }
 
@@ -16,7 +15,6 @@
   width: 100%;
   justify-content: center;
   align-items: center;
-  background-color: hotpink;
   border: 1px solid black;
 }
 
@@ -29,14 +27,16 @@
   font-size: 80px;
 }
 
+.startB:hover {
+  transform: scale(1.5);
+  transition: all 0.5s ease;
+  cursor: pointer;
+}
+
 .row {
   display: table;
   table-layout: fixed;
   margin: 10px;
-}
-
-.table {
-  background-color: red;
 }
 
 .table_cell {
@@ -50,6 +50,14 @@
 
 .back:hover {
   opacity: 1;
+}
+
+img {
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
 }
 
 .front {
@@ -72,11 +80,21 @@ nav {
   display: grid;
   justify-content: end;
 }
+
 .next_button {
-  opacity: 1;
+  opacity: 0;
   text-align: right;
   height: 40px;
-  width: 100px;
+  width: 130px;
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  outline: inherit;
+}
+
+.next_button:hover {
+  cursor: pointer;
 }
 
 .left_box {
@@ -107,15 +125,23 @@ main {
   grid-template-areas: "main side";
 }
 
-.left_box h4 {
-  background-color: green;
+.game_mode {
+  display: flex;
+  justify-content: space-between;
+  background-color: rgba(25, 25, 25, 0.5);
+  border: 5px double #a44545;
+  border-radius: 9px;
   text-align: right;
-  width: 500px;
+  width: 550px;
+  height: 50px;
+  padding: 0 5px;
+  margin: 5px 10px;
 }
 
 .display h4 {
-  border: 7px double #a40000;
-  border-radius: 7px;
+  background-color: rgba(25, 25, 25, 0.5);
+  border: 5px double #a44545;
+  border-radius: 9px;
   text-align: center;
 }
 
@@ -135,8 +161,8 @@ main {
   flex: 1;
   height: 100%;
   width: 180px;
-  background-color: green;
-  font-size: 10px;
+  font-size: 12px;
+  text-align: right;
   justify-content: flex-end;
   align-items: flex-end;
 }
@@ -168,4 +194,15 @@ button {
   background-color: rgb(106, 190, 106);
   color: black;
   border: 2px solid #555555;
+}
+
+.socials {
+  height: 20px;
+  width: 20px;
+  padding: 0 5px;
+}
+
+.disclaimer {
+  text-align: left;
+  padding: 2px;
 }
