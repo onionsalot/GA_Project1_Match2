@@ -58,7 +58,6 @@ const stageToCells = {
 };
 
 let displayedCardList = [];
-const imgLinks = [];
 /*----- app's state (variables) -----*/
 let stage, score, lives, matchedCount, currentRowPlacement;
 let mode = 0;
