@@ -92,6 +92,7 @@ pick3.addEventListener("click", pickMode);
 restart.addEventListener("click", endGame);
 /*----- functions -----*/
 function initiateGame() {
+  startButton.removeEventListener("click", initiateGame);
   if (stage === undefined) {
     animateCSS(".startB", "bounceOut");
     stage = 1;
@@ -269,6 +270,7 @@ function renderElements() {
 function renderBoard() {
   openingScreen.style.setProperty("z-index", "-1");
   gameoverScreen.style.setProperty("z-index", "-1");
+  startButton.addEventListener("click", initiateGame);
 
   for (let i = 0; i < stageToCells[stage][mode]; i++) {
     const createDiv = document.createElement("div");
