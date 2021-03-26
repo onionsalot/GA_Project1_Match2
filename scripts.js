@@ -32,36 +32,36 @@ const cardList = {
         { 'name': 'Pitbull', 'img': '<img class="front" src="cards/dogs/pitbull.png">'},
         { 'name': 'Australian Shepherd', 'img': '<img class="front" src="cards/dogs/australianshepherd.png">'},
         { 'name': 'German Shepherd', 'img': '<img class="front" src="cards/dogs/germanshepherd.png">'},
-        { 'name': 'Poodle', 'img': '<img class="front" src="https://i.ytimg.com/vi/muCshzf8k2Q/maxresdefault.jpg">'},
-        { 'name': 'Pug', 'img': '<img class="front" src="https://www.cdc.gov/healthypets/images/pets/cute-dog-headshot.jpg">'}],
+        { 'name': 'Poodle', 'img': '<img class="front" src="cards/dogs/poodle.png">'},
+        { 'name': 'Pug', 'img': '<img class="front" src="cards/dogs/pug.png">'}],
 
-    1: [{ 'name': 'Pomeranian', 'img': '<img class="front" src="cards/dogs/pomeranian.png">'},
-        { 'name': 'Pomsky', 'img': '<img class="front" src="cards/dogs/pomsky.png">'},
-        { 'name': 'Golden Retriever', 'img': '<img class="front" src="cards/dogs/goldenretriever.png">'},
-        { 'name': 'Corgi', 'img': '<img class="front" src="cards/dogs/corgi.png">'},
-        { 'name': 'Dachshund', 'img': '<img class="front" src="cards/dogs/dachshund.png">'},
-        { 'name': 'Beagle', 'img': '<img class="front" src="cards/dogs/beagle.png">'},
-        { 'name': 'Siberian Husky', 'img': '<img class="front" src="cards/dogs/husky.png">'},
-        { 'name': 'Shiba Inu', 'img': '<img class="front" src="cards/dogs/shiba.png">'},
-        { 'name': 'Pitbull', 'img': '<img class="front" src="cards/dogs/pitbull.png">'},
-        { 'name': 'Australian Shepherd', 'img': '<img class="front" src="cards/dogs/australianshepherd.png">'},
-        { 'name': 'German Shepherd', 'img': '<img class="front" src="cards/dogs/germanshepherd.png">'},
-        { 'name': 'Poodle', 'img': '<img class="front" src="https://i.ytimg.com/vi/muCshzf8k2Q/maxresdefault.jpg">'},
-        { 'name': 'Pug', 'img': '<img class="front" src="https://www.cdc.gov/healthypets/images/pets/cute-dog-headshot.jpg">'}],
+    1: [{ 'name': 'Asuna', 'img': '<img class="front" src="cards/anime/asuna.png">'},
+        { 'name': 'Saitama', 'img': '<img class="front" src="cards/anime/saitama.png">'},
+        { 'name': 'Aqua', 'img': '<img class="front" src="cards/anime/aqua.png">'},
+        { 'name': 'Luffy', 'img': '<img class="front" src="cards/anime/luffy.png">'},
+        { 'name': 'Zero Two', 'img': '<img class="front" src="cards/anime/zerotwo.png">'},
+        { 'name': 'Levi', 'img': '<img class="front" src="cards/anime/levi.png">'},
+        { 'name': 'Mikasa', 'img': '<img class="front" src="cards/anime/mikasa.png">'},
+        { 'name': 'Goku', 'img': '<img class="front" src="cards/anime/goku.png">'},
+        { 'name': 'Megumin', 'img': '<img class="front" src="cards/anime/megumin.png">'},
+        { 'name': 'Naruto', 'img': '<img class="front" src="cards/anime/naruto.png">'},
+        { 'name': 'L', 'img': '<img class="front" src="cards/anime/L.png">'},
+        { 'name': 'Emilia', 'img': '<img class="front" src="cards/anime/emilia.png">'},
+        { 'name': 'Edward', 'img': '<img class="front" src="cards/anime/edward.png">'}],
 
-    2: [{ 'name': 'Pomeranian', 'img': '<img class="front" src="cards/dogs/pomeranian.png">'},
-        { 'name': 'Pomsky', 'img': '<img class="front" src="cards/dogs/pomsky.png">'},
-        { 'name': 'Golden Retriever', 'img': '<img class="front" src="cards/dogs/goldenretriever.png">'},
-        { 'name': 'Corgi', 'img': '<img class="front" src="cards/dogs/corgi.png">'},
-        { 'name': 'Dachshund', 'img': '<img class="front" src="cards/dogs/dachshund.png">'},
-        { 'name': 'Beagle', 'img': '<img class="front" src="cards/dogs/beagle.png">'},
-        { 'name': 'Siberian Husky', 'img': '<img class="front" src="cards/dogs/husky.png">'},
-        { 'name': 'Shiba Inu', 'img': '<img class="front" src="cards/dogs/shiba.png">'},
-        { 'name': 'Pitbull', 'img': '<img class="front" src="cards/dogs/pitbull.png">'},
-        { 'name': 'Australian Shepherd', 'img': '<img class="front" src="cards/dogs/australianshepherd.png">'},
-        { 'name': 'German Shepherd', 'img': '<img class="front" src="cards/dogs/germanshepherd.png">'},
-        { 'name': 'Poodle', 'img': '<img class="front" src="https://i.ytimg.com/vi/muCshzf8k2Q/maxresdefault.jpg">'},
-        { 'name': 'Pug', 'img': '<img class="front" src="https://www.cdc.gov/healthypets/images/pets/cute-dog-headshot.jpg">'}]
+    2: [{ 'name': 'Donut', 'img': '<img class="front" src="cards/food/donut.png">'},
+        { 'name': 'Fries', 'img': '<img class="front" src="cards/food/fries.png">'},
+        { 'name': 'Hamburger', 'img': '<img class="front" src="cards/food/hamburger.png">'},
+        { 'name': 'Hotdogs', 'img': '<img class="front" src="cards/food/hotdogs.png">'},
+        { 'name': 'Ice Cream', 'img': '<img class="front" src="cards/food/icecream.png">'},
+        { 'name': 'Pizza', 'img': '<img class="front" src="cards/food/pizza.png">'},
+        { 'name': 'Ramen', 'img': '<img class="front" src="cards/food/ramen.png">'},
+        { 'name': 'Salad', 'img': '<img class="front" src="cards/food/salad.png">'},
+        { 'name': 'Spaghetti', 'img': '<img class="front" src="cards/food/spaghetti.png">'},
+        { 'name': 'Steak', 'img': '<img class="front" src="cards/food/steak.png">'},
+        { 'name': 'Sushi', 'img': '<img class="front" src="cards/food/sushi.png">'},
+        { 'name': 'Taco', 'img': '<img class="front" src="cards/food/taco.png">'},
+        { 'name': 'Wings', 'img': '<img class="front" src="cards/food/wings.png">'}]
 };
 
 const stageToCells = {
@@ -103,12 +103,15 @@ const gameoverScreen = document.querySelector(".gameover");
 const pick2 = document.querySelector(".pick2");
 const pick3 = document.querySelector(".pick3");
 const themeSelection = document.getElementById("theme_selection");
+const wallpaperSelection = document.querySelector("main.left_box");
+const restart = document.querySelector(".restart");
 /*----- event listeners -----*/
 document.querySelector(".table").addEventListener("click", clickCard);
 startButton.addEventListener("click", initiateGame);
 nextButton.addEventListener("click", initiateGame);
 pick2.addEventListener("click", pickMode);
 pick3.addEventListener("click", pickMode);
+restart.addEventListener("click", endGame);
 /*----- functions -----*/
 function initiateGame() {
   if (stage === undefined) {
@@ -119,6 +122,13 @@ function initiateGame() {
     theme = themeSelection.options[themeSelection.selectedIndex].text;
     matchedCount = 0;
     currentRowPlacement = 0;
+    if (themeSelection.value === "0") {
+      wallpaperSelection.classList.add("dogback");
+    } else if (themeSelection.value == "1") {
+      wallpaperSelection.classList.add("animeback");
+    } else {
+      wallpaperSelection.classList.add("foodback");
+    }
   } else {
     stage++;
     matchedCount = 0;
@@ -341,6 +351,7 @@ function removeBoard() {
 function countdownTimer() {
   // All timer functions will be located here. Called when stage starts to flip cards.
   // Also called to start stage timer so users have only 60 seconds to complete a stage.
+  restart.removeEventListener("click", endGame);
   setTimeout(function () {
     renderBoard();
   }, 1000);
@@ -364,6 +375,7 @@ function countdownTimer() {
       cell.style.transform = "rotateY(180deg)";
     });
     timeOut = setInterval(timeOutTimer, 1000);
+    restart.addEventListener("click", endGame);
   }, 5000);
 }
 
@@ -406,3 +418,11 @@ const animateCSS = (element, animation, prefix = "animate__") =>
 
     node.addEventListener("animationend", handleAnimationEnd, { once: true });
   });
+
+function endGame() {
+  gameoverScreen.style.setProperty("z-index", "-1");
+  openingScreen.style.setProperty("z-index", "1");
+  clearInterval(timeOut);
+  stage = undefined;
+  removeBoard();
+}

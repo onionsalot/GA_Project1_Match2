@@ -86,14 +86,21 @@ nav {
   text-align: right;
   height: 40px;
   width: 130px;
-  background: none;
+  background-color: rgba(255, 255, 255, 0.5);
+  border: 5px double #a44545;
+  border-radius: 9px;
   color: inherit;
-  border: none;
   padding: 0;
   outline: inherit;
 }
 
 .next_button:hover {
+  cursor: pointer;
+}
+
+.restart:hover {
+  transform: scale(1.2);
+  transition: all 0.5s ease;
   cursor: pointer;
 }
 
@@ -128,7 +135,7 @@ main {
 .game_mode {
   display: flex;
   justify-content: space-between;
-  background-color: rgba(25, 25, 25, 0.5);
+  background-color: rgba(255, 255, 255, 0.5);
   border: 5px double #a44545;
   border-radius: 9px;
   text-align: right;
@@ -139,19 +146,17 @@ main {
 }
 
 .display h4 {
-  background-color: rgba(25, 25, 25, 0.5);
+  background-color: rgba(255, 255, 255, 0.5);
   border: 5px double #a44545;
   border-radius: 9px;
   text-align: center;
 }
 
 .display2 {
-  display: grid;
-  border: 1px solid black;
-  width: 50px;
+  display: flex;
+  width: 100%;
   height: 50px;
   justify-content: space-around;
-  background-color: yellow;
 }
 
 .display3 {
@@ -168,8 +173,13 @@ main {
 }
 
 #countdown {
+  background-color: rgba(255, 255, 255, 0.5);
+  border: 5px double #a44545;
+  height: 50px;
+  width: 50px;
   font-size: 40px;
   margin: auto;
+  text-align: center;
 }
 
 .lives {
@@ -205,4 +215,19 @@ button {
 .disclaimer {
   text-align: left;
   padding: 2px;
+}
+
+.dogback {
+  background-image: url("cards/wallpapers/dogwall.png");
+  background-size: cover;
+}
+
+.animeback {
+  background-image: url("cards/wallpapers/animewall.png");
+  background-size: cover;
+}
+
+.foodback {
+  background-image: url("cards/wallpapers/foodwall.png");
+  background-size: cover;
 }
