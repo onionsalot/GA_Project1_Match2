@@ -9,7 +9,7 @@ Match two is a memory game where after briefly being shown a handfull of cards, 
 
 Alongside of the match two format, there is also a match three which will be significantly harder.
 
-[PLAY THE GAME](https://onionsalot.github.io/GA_Project1_Match2/)
+[PLAY THE GAME](https://onionsalot.github.io/Matching-memory-game/)
 ---
   
 ### Technologies Used:
