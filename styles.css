@@ -233,6 +233,9 @@ button {
   background-size: cover;
 }
 
+.mobile-bottom {
+  display: none;
+}
 
 
 @media screen and (max-width: 800px) {
@@ -271,5 +274,19 @@ button {
   p.restart {
     text-align: center;
     margin: auto 0;
+  }
+  .mobile-bottom {
+    display: flex;
+    flex-direction: row;
+    width: 592px;
+    background-color: gray;
+    border: 1px black solid;
+  }
+  .mobile-bottom .socials-display {
+    display: flex;
+    flex-direction: row;
+  }
+  .display3 {
+    display: none;
   }
 }
